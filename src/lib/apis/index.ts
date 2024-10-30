@@ -1,4 +1,4 @@
-import { WEBUI_API_BASE_URL, WEBUI_BASE_URL } from '$lib/constants';
+import { WEBUI_API_BASE_URL, WEBUI_BASE_URL, PIPELINES_API_BASE_URL } from '$lib/constants';
 
 export const getModels = async (token: string = '') => {
 	let error = null;
@@ -444,7 +444,7 @@ export const generateMoACompletion = async (
 export const getPipelinesList = async (token: string = '') => {
 	let error = null;
 
-	const res = await fetch(`${WEBUI_BASE_URL}/api/pipelines/list`, {
+	const res = await fetch(`${PIPELINES_API_BASE_URL}/list`, {
 		method: 'GET',
 		headers: {
 			Accept: 'application/json',
@@ -478,7 +478,7 @@ export const uploadPipeline = async (token: string, file: File, urlIdx: string) 
 	formData.append('file', file);
 	formData.append('urlIdx', urlIdx);
 
-	const res = await fetch(`${WEBUI_BASE_URL}/api/pipelines/upload`, {
+	const res = await fetch(`${PIPELINES_API_BASE_URL}/upload`, {
 		method: 'POST',
 		headers: {
 			...(token && { authorization: `Bearer ${token}` })
@@ -510,7 +510,7 @@ export const uploadPipeline = async (token: string, file: File, urlIdx: string) 
 export const downloadPipeline = async (token: string, url: string, urlIdx: string) => {
 	let error = null;
 
-	const res = await fetch(`${WEBUI_BASE_URL}/api/pipelines/add`, {
+	const res = await fetch(`${PIPELINES_API_BASE_URL}/add`, {
 		method: 'POST',
 		headers: {
 			Accept: 'application/json',
@@ -546,7 +546,7 @@ export const downloadPipeline = async (token: string, url: string, urlIdx: strin
 export const deletePipeline = async (token: string, id: string, urlIdx: string) => {
 	let error = null;
 
-	const res = await fetch(`${WEBUI_BASE_URL}/api/pipelines/delete`, {
+	const res = await fetch(`${PIPELINES_API_BASE_URL}/delete`, {
 		method: 'DELETE',
 		headers: {
 			Accept: 'application/json',
@@ -587,7 +587,7 @@ export const getPipelines = async (token: string, urlIdx?: string) => {
 		searchParams.append('urlIdx', urlIdx);
 	}
 
-	const res = await fetch(`${WEBUI_BASE_URL}/api/pipelines?${searchParams.toString()}`, {
+	const res = await fetch(`${PIPELINES_API_BASE_URL}?${searchParams.toString()}`, {
 		method: 'GET',
 		headers: {
 			Accept: 'application/json',
@@ -622,7 +622,7 @@ export const getPipelineValves = async (token: string, pipeline_id: string, urlI
 	}
 
 	const res = await fetch(
-		`${WEBUI_BASE_URL}/api/pipelines/${pipeline_id}/valves?${searchParams.toString()}`,
+		`${PIPELINES_API_BASE_URL}/${pipeline_id}/valves?${searchParams.toString()}`,
 		{
 			method: 'GET',
 			headers: {
@@ -658,7 +658,7 @@ export const getPipelineValvesSpec = async (token: string, pipeline_id: string, 
 	}
 
 	const res = await fetch(
-		`${WEBUI_BASE_URL}/api/pipelines/${pipeline_id}/valves/spec?${searchParams.toString()}`,
+		`${PIPELINES_API_BASE_URL}/${pipeline_id}/valves/spec?${searchParams.toString()}`,
 		{
 			method: 'GET',
 			headers: {
@@ -699,7 +699,7 @@ export const updatePipelineValves = async (
 	}
 
 	const res = await fetch(
-		`${WEBUI_BASE_URL}/api/pipelines/${pipeline_id}/valves/update?${searchParams.toString()}`,
+		`${PIPELINES_API_BASE_URL}/${pipeline_id}/valves/update?${searchParams.toString()}`,
 		{
 			method: 'POST',
 			headers: {
