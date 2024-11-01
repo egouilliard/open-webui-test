@@ -1,4 +1,14 @@
 import { WEBUI_API_BASE_URL, WEBUI_BASE_URL, PIPELINES_API_BASE_URL } from '$lib/constants';
+import {
+	getPipelines,
+	uploadPipeline,
+	downloadPipeline,
+	deletePipeline,
+	getPipelineValves,
+	getPipelineValvesSpec,
+	updatePipelineValves,
+	getPipelinesList
+} from './pipelines';
 
 export const getModels = async (token: string = '') => {
 	let error = null;
